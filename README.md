@@ -35,7 +35,7 @@ CMD ["python", "app.py"]
 
 from flask import Flask, render_template, request
 
-app = Flask(name)
+app = Flask(__name__)
 
 @app.route('/')
 def home():
@@ -47,7 +47,7 @@ def register():
     email = request.form['email']
     return f"User Registered Successfully!<br>Name: {name}<br>Email: {email}"
 
-if name == 'main':
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
     
  command
