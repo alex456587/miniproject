@@ -1,5 +1,8 @@
-
 flask App + Docker--------------------------
+
+template
+  ->register.html
+  ->thank-you.html
 
 
 //requirements.txt
@@ -32,7 +35,7 @@ CMD ["python", "app.py"]
 
 from flask import Flask, render_template, request
 
-app = Flask(_name_)
+app = Flask(name)
 
 @app.route('/')
 def home():
@@ -44,7 +47,7 @@ def register():
     email = request.form['email']
     return f"User Registered Successfully!<br>Name: {name}<br>Email: {email}"
 
-if _name_ == '_main_':
+if name == 'main':
     app.run(host='0.0.0.0', port=5000)
     
  command
@@ -91,8 +94,6 @@ jobs:
 
 
 Selenium------------------------------------------------------------------------------------------------------------
-
-
 
 
 requirements
@@ -228,7 +229,7 @@ const PORT = 3000;
 app.use(express.static('content'));
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(Server running at http://localhost:${PORT});
 });
 
 
@@ -249,8 +250,39 @@ step 4: build now check the console logs
 
 
 
-
-
-
-
-
+------------------------------------------------------------------------------------------------------------------------------
+////html for register.html
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Event Registration</title>
+</head>
+<body>
+    <h1>Register for the Event</h1>
+    <form action="/register" method="post">
+        <label>Name: <input type="text" name="name" required></label><br><br>
+        <label>Email: <input type="email" name="email" required></label><br><br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
+------------------------------------------------------------------------------------------------------------------------------
+///html for thank-you.html
+<!DOCTYPE html>
+<html>
+<head>
+     <meta charset="UTF-8">
+    <title>Thank You</title>
+</head>
+<body>
+    <h1>Thank You for Registering!</h1>
+    <h2>Registered Participants:</h2>
+    <ul>
+        {% for reg in registrations %}
+            <li>{{ reg.name }} ({{ reg.email }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
+--------------------------------------------------------------------------------------------------------------------------------
